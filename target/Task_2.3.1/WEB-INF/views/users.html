@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table users</title>
+</head>
+<style type="text/css">
+  body {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    text-align: center;
+  }
+  table {
+    border-collapse: collapse;
+    margin: auto;
+  }
+  caption {
+    font-size: 16px;
+  }
+  th {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+  }
+  th, td {
+    border-style: solid;
+    border-color: white;
+  }
+  td {
+    padding: 5px 10px;
+    background: #D8E6F3;
+  }
+  .adduser {
+    display: block;
+  }
+</style>
+<body>
+<table border="1">
+  <caption>Table users</caption>
+  <tr>
+    <th>User id</th>
+    <th>User name</th>
+    <th>User lastname</th>
+    <th>User age</th>
+    <th>User email</th>
+    <th>Operations</th>
+  </tr>
+  <th:block th:each="user : ${users}">
+    <tr>
+      <td th:text="${user.id}"/>
+      <td th:text="${user.name}"/>
+      <td th:text="${user.lastName}"/>
+      <td th:text="${user.age}"/>
+      <td th:text="${user.email}"/>
+      <td>
+        <a th:href="@{/users/{id}/edituser(id=${user.getId()})}">Edit</a>
+      </td>
+
+    </tr>
+  </th:block>
+</table>
+<br/>
+<a href="/users/adduser" class="adduser">Create new user</a>
+</body>
+</html>
